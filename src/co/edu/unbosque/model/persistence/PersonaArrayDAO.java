@@ -19,7 +19,6 @@ public class PersonaArrayDAO {
 			}
 		}
 		return encontrado;
-
 	}
 
 	public boolean agregarPersona(String nombre, String apellido, String sexo, String telefono, String edad,

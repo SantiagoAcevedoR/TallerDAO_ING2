@@ -16,7 +16,6 @@ public class Conexion {
 	      try{
 	         connection = DriverManager.getConnection( "jdbc:sqlite:Data\\data.db" );
 	         if ( connection != null ){
-	            System.out.println("Conexión exitosa!");
 	         }
 	      }
 	      catch ( Exception ex ) {

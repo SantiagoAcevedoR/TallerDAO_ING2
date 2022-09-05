@@ -3,6 +3,8 @@ package co.edu.unbosque.model.persistence;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import co.edu.unbosque.model.Conexion;
 
@@ -40,9 +42,7 @@ public class PersonaSqlDAO {
 		connection.abrirConexion();
 		Statement stmt = null;
 		ArrayList<PersonaDTO> listaPersonas = new ArrayList<>();
-
 		try {
-
 			stmt = connection.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM persona;");
 			while (rs.next()) {
@@ -54,7 +54,6 @@ public class PersonaSqlDAO {
 				String telefono = rs.getString("telefono");
 				PersonaDTO persona = new PersonaDTO(nombre, apellido, sexo, telefono, edad, cedula);
 				listaPersonas.add(persona);
-
 			}
 			rs.close();
 			stmt.close();
@@ -63,7 +62,34 @@ public class PersonaSqlDAO {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
 		}
-		System.out.println("Información mostrada correctamente");
+		return listaPersonas;
+	}
+	
+	public ArrayList<PersonaDTO> consultarUsuarios(String cedula) {
+		connection.abrirConexion();
+		Statement stmt = null;
+		ArrayList<PersonaDTO> listaPersonas = new ArrayList<>();
+		try {
+
+			stmt = connection.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM persona WHERE cedula like '%" + cedula + "%'");
+			while (rs.next()) {
+				String cedula1 = rs.getString("cedula");
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellido");
+				String sexo = rs.getString("sexo");
+				String edad = rs.getString("edad");
+				String telefono = rs.getString("telefono");
+				PersonaDTO persona = new PersonaDTO(nombre, apellido, sexo, telefono, edad, cedula1);
+				listaPersonas.add(persona);
+			}
+			rs.close();
+			stmt.close();
+			connection.getConnection().close();
+		} catch (Exception e) {
+			Logger.getLogger(PersonaSqlDAO.class.getName()).log(Level.SEVERE, null, e);
+			return null;
+		}
 		return listaPersonas;
 	}
 
@@ -98,7 +124,6 @@ public class PersonaSqlDAO {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
 		}
-		System.out.println("Información mostrada correctamente");
 		return res;
 	}
 	/**

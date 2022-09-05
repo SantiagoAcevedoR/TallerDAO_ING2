@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import co.edu.unbosque.model.Modelo;
 import co.edu.unbosque.model.persistence.PersonaDTO;
@@ -155,7 +156,18 @@ public class Controller implements ActionListener, KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+		if (!vista.getPanelSql().getPanelConsulta().getTxtNombre().getText().equals("")) {
+			System.out.println(vista.getPanelSql().getPanelConsulta().getTxtNombre().getText());
+			ArrayList<PersonaDTO> listaUsuarios = modelo.getPersonaSql().consultarUsuarios(vista.getPanelSql().getPanelConsulta().getTxtNombre().getText());
+			String[][] infoUsuarios = modelo.mostarInfoPersonas(listaUsuarios);
+			vista.getPanelSql().getPanelConsulta().getPanelTablas().limpiarPanel();
+			vista.getPanelSql().getPanelConsulta().getPanelTablas().mostrarTablaClientes(infoUsuarios);
+		}else if (vista.getPanelSql().getPanelConsulta().getTxtNombre().getText().equals("")) {
+			ArrayList<PersonaDTO> listaUsuarios = modelo.getPersonaSql().buscarPersonas();
+			String[][] infoUsuarios = modelo.mostarInfoPersonas(listaUsuarios);
+			vista.getPanelSql().getPanelConsulta().getPanelTablas().limpiarPanel();
+			vista.getPanelSql().getPanelConsulta().getPanelTablas().mostrarTablaClientes(infoUsuarios);
+		}
 
 	}
 }
