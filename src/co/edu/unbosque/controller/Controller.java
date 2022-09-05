@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import co.edu.unbosque.model.Modelo;
+import co.edu.unbosque.model.persistence.PersonaDTO;
 import co.edu.unbosque.view.Vista;
 
 public class Controller implements ActionListener, KeyListener {
@@ -16,7 +17,6 @@ public class Controller implements ActionListener, KeyListener {
 	public Controller() {
 		vista = new Vista(this);
 		modelo = new Modelo();
-		modelo.getCone().abrirConexion();
 
 	}
 
@@ -26,16 +26,29 @@ public class Controller implements ActionListener, KeyListener {
 		if (comando.equals(vista.getCOMANDO_DAO_ARREGLO())) {
 			vista.getPanelArreglo().setVisible(true);
 			vista.getPanelBinario().setVisible(false);
+			vista.getPanelSql().setVisible(false);
 		}
 		if (comando.equals(vista.getCOMANDO_DAO_BINARIO())) {
 			vista.getPanelBinario().setVisible(true);
 			vista.getPanelArreglo().setVisible(false);
+			vista.getPanelSql().setVisible(false);
 		}
 		if (comando.equals(vista.getCOMANDO_DAO_RELACIONAL())) {
-
+			vista.getPanelBinario().setVisible(false);
+			vista.getPanelArreglo().setVisible(false);
+			vista.getPanelSql().setVisible(true);
 		}
 		if (comando.equals(vista.getCOMANDO_DAO_NORELACIONAL())) {
 
+		}
+		
+		
+		if (comando.equals(vista.getPanelSql().getCOMANDO_AGREGAR_PERSONA())) {
+			vista.getPanelSql().getSplitPane().setRightComponent(vista.getPanelSql().getPanelAgregar());
+		}
+		
+		if (comando.equals(vista.getPanelSql().getCOMANDO_VER_INFORMACION())) {
+			vista.getPanelSql().getSplitPane().setRightComponent(vista.getPanelSql().getPanelConsulta());
 		}
 
 		if (comando.equals(vista.getPanelArreglo().getCOMANDO_AGREGAR_PERSONA())) {
@@ -96,6 +109,21 @@ public class Controller implements ActionListener, KeyListener {
 					vista.mostrarMensajeInformacion("La persona ya se encuentra reistrada");
 				}
 
+			} else {
+				vista.mostrarMensajeInformacion(entradas[1]);
+			}
+		}
+		
+		if (comando.equals(vista.getPanelSql().getPanelAgregar().getCOMANDO_CREAR())) {
+			String[] entradas = vista.getPanelSql().getPanelAgregar().verificarEntradas();
+			if (entradas[0].equals("0")) {
+				PersonaDTO persona = new PersonaDTO(entradas[1], entradas[2], entradas[6], entradas[3],
+						entradas[4], entradas[5]);
+				if (modelo.getPersonaSql().insertarPersonaDB(persona)) {
+					vista.mostrarMensajeInformacion("Persona creada correctamente");
+				} else {
+					vista.mostrarMensajeInformacion("La persona ya se encuentra registrada");
+				}
 			} else {
 				vista.mostrarMensajeInformacion(entradas[1]);
 			}

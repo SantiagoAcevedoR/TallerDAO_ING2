@@ -5,19 +5,19 @@ import java.util.ArrayList;
 import co.edu.unbosque.model.persistence.PersonaArrayDAO;
 import co.edu.unbosque.model.persistence.PersonaBinDAO;
 import co.edu.unbosque.model.persistence.PersonaDTO;
+import co.edu.unbosque.model.persistence.PersonaSqlDAO;
 
 public class Modelo {
 	
 	private PersonaArrayDAO personaArreglo;
 	private PersonaBinDAO personaBin;
-	private Conexion cone;
+	private PersonaSqlDAO personaSql;
 	
-	public Modelo() {
-		
+	public Modelo() {	
 		personaArreglo = new PersonaArrayDAO();
-		personaBin = new PersonaBinDAO();
-		cone = new Conexion();
-		
+		personaBin = new PersonaBinDAO();	
+		personaSql = new PersonaSqlDAO();		
+
 	}
 	
 	public String[][] mostarInfoPersonas(ArrayList<PersonaDTO> listaPersona) {
@@ -63,18 +63,19 @@ public class Modelo {
 	}
 
 	/**
-	 * @return the cone
+	 * @return the personaSql
 	 */
-	public Conexion getCone() {
-		return cone;
+	public PersonaSqlDAO getPersonaSql() {
+		return personaSql;
 	}
 
 	/**
-	 * @param cone the cone to set
+	 * @param personaSql the personaSql to set
 	 */
-	public void setCone(Conexion cone) {
-		this.cone = cone;
+	public void setPersonaSql(PersonaSqlDAO personaSql) {
+		this.personaSql = personaSql;
 	}
+
 	
 	
 

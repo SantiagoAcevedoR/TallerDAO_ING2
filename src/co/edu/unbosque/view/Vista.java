@@ -26,6 +26,7 @@ public class Vista extends JFrame{
 	private JPanel panelPrincipal;
 	private PanelArreglo panelArreglo;
 	private PanelBinario panelBinario;
+	private PanelSql panelSql;
 
 
 	public Vista(Controller controller) {
@@ -62,8 +63,13 @@ public class Vista extends JFrame{
 		panelBinario.setVisible(false);
 		panelBinario.setBounds(0, 0, 690, 370);
 		
+		panelSql = new PanelSql(controller);
+		panelSql.setVisible(false);
+		panelSql.setBounds(0, 0, 690, 370);
+		
 		panelPrincipal.add(panelArreglo);
 		panelPrincipal.add(panelBinario);
+		panelPrincipal.add(panelSql);
 	
 		setJMenuBar(menuBar);
 		add(panelPrincipal);
@@ -84,6 +90,9 @@ public class Vista extends JFrame{
 		panelBinario.getBtnAgregarPersona().addActionListener(controller);
 		panelBinario.getBtnVerInfo().addActionListener(controller);
 		panelBinario.getPanelAgregar().getBtnCrear().addActionListener(controller);
+		panelSql.getBtnAgregarPersona().addActionListener(controller);
+		panelSql.getBtnVerInfo().addActionListener(controller);
+		panelSql.getPanelAgregar().getBtnCrear().addActionListener(controller);
 	}
 	
 	/**
@@ -192,8 +201,19 @@ public class Vista extends JFrame{
 	public void setPanelBinario(PanelBinario panelBinario) {
 		this.panelBinario = panelBinario;
 	}
-	
-	
 
+	/**
+	 * @return the panelSql
+	 */
+	public PanelSql getPanelSql() {
+		return panelSql;
+	}
+
+	/**
+	 * @param panelSql the panelSql to set
+	 */
+	public void setPanelSql(PanelSql panelSql) {
+		this.panelSql = panelSql;
+	}
 	
 }
