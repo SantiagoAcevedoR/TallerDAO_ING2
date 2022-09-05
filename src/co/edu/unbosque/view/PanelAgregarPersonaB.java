@@ -75,6 +75,17 @@ public class PanelAgregarPersonaB extends JPanel{
 		add(panelBotones, BorderLayout.PAGE_END);
 	}
 	
+	
+	public void limpiarPanel() {
+		txtNombre.setText("");
+		txtApellido.setText("");
+		txtTelefono.setText("");
+		txtEdad.setText("");
+		txtCedula.setText("");
+		comboSexo.setSelectedIndex(0);
+	}
+	
+	
 	public String[] verificarEntradas() {
 		String[] entradas = new String[7];
 		entradas[0] = "0";

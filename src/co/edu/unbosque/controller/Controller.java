@@ -17,7 +17,6 @@ public class Controller implements ActionListener, KeyListener {
 	public Controller() {
 		vista = new Vista(this);
 		modelo = new Modelo();
-
 	}
 
 	@Override
@@ -84,6 +83,14 @@ public class Controller implements ActionListener, KeyListener {
 			vista.getPanelBinario().getPanelConsulta().getPanelTablas().limpiarPanel();
 			vista.getPanelBinario().getPanelConsulta().getPanelTablas().mostrarTablaPersonas2(info);
 		}
+		
+		if (comando.equals(vista.getPanelSql().getCOMANDO_VER_INFORMACION())) {
+			vista.getPanelSql().getSplitPane().setRightComponent(vista.getPanelSql().getPanelConsulta());
+			vista.getPanelSql().getPanelConsulta().getPanelTablas().limpiarPanel();
+			String[][] info = modelo.mostarInfoPersonas(modelo.getPersonaSql().buscarPersonas());
+			vista.getPanelSql().getPanelConsulta().getPanelTablas().limpiarPanel();
+			vista.getPanelSql().getPanelConsulta().getPanelTablas().mostrarTablaPersonas2(info);
+		}
 
 		if (comando.equals(vista.getPanelArreglo().getPanelAgregar().getCOMANDO_CREAR())) {
 			String[] entradas = vista.getPanelArreglo().getPanelAgregar().verificarEntradas();
@@ -91,6 +98,7 @@ public class Controller implements ActionListener, KeyListener {
 				if (modelo.getPersonaArreglo().agregarPersona(entradas[1], entradas[2], entradas[6], entradas[3],
 						entradas[4], entradas[5])) {
 					vista.mostrarMensajeInformacion("Persona creada correctamente");
+					vista.getPanelArreglo().getPanelAgregar().limpiarPanel();
 				} else {
 					vista.mostrarMensajeInformacion("La persona ya se encuentra registrada");
 				}
@@ -105,6 +113,7 @@ public class Controller implements ActionListener, KeyListener {
 				if (modelo.getPersonaBin().agregarPersona(entradas[1], entradas[2], entradas[6], entradas[3],
 						entradas[4], entradas[5])) {
 					vista.mostrarMensajeInformacion("Persona creada correctamente");
+					vista.getPanelBinario().getPanelAgregar().limpiarPanel();
 				} else {
 					vista.mostrarMensajeInformacion("La persona ya se encuentra reistrada");
 				}
@@ -121,6 +130,7 @@ public class Controller implements ActionListener, KeyListener {
 						entradas[4], entradas[5]);
 				if (modelo.getPersonaSql().insertarPersonaDB(persona)) {
 					vista.mostrarMensajeInformacion("Persona creada correctamente");
+					vista.getPanelSql().getPanelAgregar().limpiarPanel();
 				} else {
 					vista.mostrarMensajeInformacion("La persona ya se encuentra registrada");
 				}
