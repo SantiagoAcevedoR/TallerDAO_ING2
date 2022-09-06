@@ -20,6 +20,20 @@ public class PersonaArrayDAO {
 		}
 		return encontrado;
 	}
+	
+	public ArrayList<PersonaDTO> buscarPersonasPorCedula(String cedula){
+		ArrayList<PersonaDTO> listaPersona2 =new ArrayList<PersonaDTO>();
+		for(int i=0; i<cedula.length()+1;i++) {
+			for(int j=0;j<listaPersona.size();j++) {
+				if(cedula.substring(i, i+1).equals(listaPersona.get(j).getCedula().substring(i, i+1))) {
+					listaPersona2.add(listaPersona.get(j));
+				}
+			}
+		}
+		return listaPersona2;
+		
+		
+	}
 
 	public boolean agregarPersona(String nombre, String apellido, String sexo, String telefono, String edad,
 			String cedula) {
