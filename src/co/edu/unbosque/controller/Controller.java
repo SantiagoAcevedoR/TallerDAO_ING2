@@ -82,7 +82,7 @@ public class Controller implements ActionListener, KeyListener {
 			vista.getPanelBinario().getPanelConsulta().getPanelTablas().limpiarPanel();
 			String[][] info = modelo.mostarInfoPersonas(modelo.getPersonaBin().getListaPersonas());
 			vista.getPanelBinario().getPanelConsulta().getPanelTablas().limpiarPanel();
-			vista.getPanelBinario().getPanelConsulta().getPanelTablas().mostrarTablaPersonas2(info);
+			vista.getPanelBinario().getPanelConsulta().getPanelTablas().mostrarTablaClientes(info);
 		}
 		
 		if (comando.equals(vista.getPanelSql().getCOMANDO_VER_INFORMACION())) {
@@ -90,7 +90,7 @@ public class Controller implements ActionListener, KeyListener {
 			vista.getPanelSql().getPanelConsulta().getPanelTablas().limpiarPanel();
 			String[][] info = modelo.mostarInfoPersonas(modelo.getPersonaSql().buscarPersonas());
 			vista.getPanelSql().getPanelConsulta().getPanelTablas().limpiarPanel();
-			vista.getPanelSql().getPanelConsulta().getPanelTablas().mostrarTablaPersonas2(info);
+			vista.getPanelSql().getPanelConsulta().getPanelTablas().mostrarTablaClientes(info);
 		}
 
 		if (comando.equals(vista.getPanelArreglo().getPanelAgregar().getCOMANDO_CREAR())) {
@@ -139,7 +139,29 @@ public class Controller implements ActionListener, KeyListener {
 				vista.mostrarMensajeInformacion(entradas[1]);
 			}
 		}
-
+		
+		if(comando.equals(vista.getPanelArreglo().getPanelConsulta().getCOMANDO_ELIMINAR())) {
+			if(vista.getPanelArreglo().getPanelConsulta().getPanelTablas().verificarDatosTabla() == 1) {
+				String[] entradas = vista.getPanelArreglo().getPanelConsulta().getPanelTablas().obtenerDatosTabla();
+				int confirmar = vista.mostarMensajeConfirmar("Seguro desea eliminar a esta persona");
+				if(confirmar==0) {
+					if(modelo.getPersonaArreglo().eliminarPersona(entradas[6])) {
+						String[][] info = modelo.mostarInfoPersonas(modelo.getPersonaArreglo().getListaPersona());
+						vista.getPanelArreglo().getPanelConsulta().getPanelTablas().limpiarPanel();
+						vista.getPanelArreglo().getPanelConsulta().getPanelTablas().mostrarTablaClientes(info);
+						vista.mostrarMensajeInformacion(entradas[2]);
+					}else {
+						vista.mostrarMensajeInformacion("No se ha podido eliminar a la persona seleccionada");
+					}
+				} else if (confirmar == 1) {
+					vista.mostrarMensajeInformacion("Gracias por confirmar");
+				} else {
+					vista.mostrarMensajeInformacion("Gracias");
+				}
+			}else {
+				vista.mostrarMensajeInformacion("Seleccione al menos un dato");
+			}
+		}
 	}
 
 	@Override

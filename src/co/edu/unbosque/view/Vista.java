@@ -87,6 +87,8 @@ public class Vista extends JFrame{
 		panelArreglo.getBtnAgregarPersona().addActionListener(controller);
 		panelArreglo.getBtnVerInfo().addActionListener(controller);
 		panelArreglo.getPanelAgregar().getBtnCrear().addActionListener(controller);
+		panelArreglo.getPanelConsulta().getBtnEditar().addActionListener(controller);
+		panelArreglo.getPanelConsulta().getBtnEliminar().addActionListener(controller);
 		panelBinario.getBtnAgregarPersona().addActionListener(controller);
 		panelBinario.getBtnVerInfo().addActionListener(controller);
 		panelBinario.getPanelAgregar().getBtnCrear().addActionListener(controller);
@@ -120,6 +122,11 @@ public class Vista extends JFrame{
 	 */
 	public void mostrarMensajeError(String mensaje) {
 		JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public int mostarMensajeConfirmar(String mensaje) {
+		int verificar = JOptionPane.showConfirmDialog(null, mensaje);
+		return verificar;
 	}
 	
 	public String pedirDato(String mensaje) {

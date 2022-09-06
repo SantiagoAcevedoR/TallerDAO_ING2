@@ -1,7 +1,9 @@
 package co.edu.unbosque.view;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -11,11 +13,18 @@ import co.edu.unbosque.controller.Controller;
 
 public class PanelConsultaA extends JPanel{
 	
+	private final String COMANDO_ELIMINAR = "ELIMINAR";
+	private final String COMANDO_EDITAR = "EDITAR";
+	
 	private PanelTablas panelTablas;
 	private JLabel labelNombre;
 	private JTextField txtNombre;
+	private JButton btnEliminar;
+	private JButton btnEditar;
 	private JPanel panel;
 	private JSplitPane splitPane;
+	private JPanel panelBotones;
+	private JPanel panel2;
 	
 	public PanelConsultaA(Controller controller) {
 		setLayout(new GridLayout(1, 1));
@@ -23,14 +32,26 @@ public class PanelConsultaA extends JPanel{
 		labelNombre = new JLabel("Ingrese el nombre que desa buscar");
 		txtNombre = new JTextField();
 		txtNombre.addKeyListener(controller);
+		btnEliminar = new JButton("Eliminar");
+		btnEliminar.setActionCommand(COMANDO_ELIMINAR);
+		btnEditar = new JButton("Editar");
+		btnEditar.setActionCommand(COMANDO_EDITAR);
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(1, 2));
 		panel.add(labelNombre);
 		panel.add(txtNombre);
+		panelBotones = new JPanel();
+		panelBotones.setLayout(new GridLayout(1, 2));
+		panelBotones.add(btnEliminar);
+		panelBotones.add(btnEditar);
+		panel2 = new JPanel();
+		panel2.setLayout(new BorderLayout());
+		panel2.add(panelTablas, BorderLayout.CENTER);
+		panel2.add(panelBotones, BorderLayout.PAGE_END);
 		splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setDividerLocation(50);
 		splitPane.setTopComponent(panel);
-		splitPane.setBottomComponent(panelTablas);
+		splitPane.setBottomComponent(panel2);
 		add(splitPane);
 	}
 
@@ -102,5 +123,47 @@ public class PanelConsultaA extends JPanel{
 	 */
 	public void setSplitPane(JSplitPane splitPane) {
 		this.splitPane = splitPane;
+	}
+
+	/**
+	 * @return the btnEliminar
+	 */
+	public JButton getBtnEliminar() {
+		return btnEliminar;
+	}
+
+	/**
+	 * @param btnEliminar the btnEliminar to set
+	 */
+	public void setBtnEliminar(JButton btnEliminar) {
+		this.btnEliminar = btnEliminar;
+	}
+
+	/**
+	 * @return the btnEditar
+	 */
+	public JButton getBtnEditar() {
+		return btnEditar;
+	}
+
+	/**
+	 * @param btnEditar the btnEditar to set
+	 */
+	public void setBtnEditar(JButton btnEditar) {
+		this.btnEditar = btnEditar;
+	}
+
+	/**
+	 * @return the cOMANDO_ELIMINAR
+	 */
+	public String getCOMANDO_ELIMINAR() {
+		return COMANDO_ELIMINAR;
+	}
+
+	/**
+	 * @return the cOMANDO_EDITAR
+	 */
+	public String getCOMANDO_EDITAR() {
+		return COMANDO_EDITAR;
 	}
 }
