@@ -17,6 +17,7 @@ public class PanelConsultaA extends JPanel{
 	private final String COMANDO_EDITAR = "EDITAR";
 	
 	private PanelTablas panelTablas;
+	private PanelEditarPersonaA panelEditar;
 	private JLabel labelNombre;
 	private JTextField txtNombre;
 	private JButton btnEliminar;
@@ -29,6 +30,7 @@ public class PanelConsultaA extends JPanel{
 	public PanelConsultaA(Controller controller) {
 		setLayout(new GridLayout(1, 1));
 		panelTablas = new PanelTablas();
+		panelEditar = new PanelEditarPersonaA();
 		labelNombre = new JLabel("Ingrese el nombre que desa buscar");
 		txtNombre = new JTextField();
 		txtNombre.addKeyListener(controller);
@@ -166,4 +168,20 @@ public class PanelConsultaA extends JPanel{
 	public String getCOMANDO_EDITAR() {
 		return COMANDO_EDITAR;
 	}
+
+	/**
+	 * @return the panelEditar
+	 */
+	public PanelEditarPersonaA getPanelEditar() {
+		return panelEditar;
+	}
+
+	/**
+	 * @param panelEditar the panelEditar to set
+	 */
+	public void setPanelEditar(PanelEditarPersonaA panelEditar) {
+		this.panelEditar = panelEditar;
+	}
+	
+	
 }

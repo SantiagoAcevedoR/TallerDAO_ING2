@@ -128,40 +128,45 @@ public class PersonaSqlDAO {
 		return res;
 	}
 
-	public void modificarPersona(PersonaDTO persona) {
+	public boolean modificarPersona(PersonaDTO persona) {
 		connection.abrirConexion();
 		Statement stmt = null;
 		try {
+			connection.getConnection().setAutoCommit(false);
+
 			stmt = connection.getConnection().createStatement();
-			String sql = "UPDATE personas set nombre = '" + persona.getNombre() + "',apellido= '"
+			String sql = "UPDATE persona set nombre = '" + persona.getNombre() + "',apellido= '"
 					+ persona.getApellido() + "',sexo='" + persona.getSexo() + "',edad='" + persona.getEdad()
 					+ "',telefono='" + persona.getTelefono() + "' where cedula='" + persona.getCedula() + "';";
 			stmt.executeUpdate(sql);
 			connection.getConnection().commit();
 			stmt.close();
 			connection.getConnection().close();
+			return true;
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
+			return false;
 		}
-		System.out.println("Operation done successfully");
 	}
 
-	public void deleteDB(String cedula) {
+	public boolean deleteDB(String cedula) {
 		connection.abrirConexion();
 		Statement stmt = null;
 		try {
+			connection.getConnection().setAutoCommit(false);
 			stmt = connection.getConnection().createStatement();
 			String sql = "DELETE from persona where cedula='"+cedula+"';";
 			stmt.executeUpdate(sql);
 			connection.getConnection().commit();
 			stmt.close();
 			connection.getConnection().close();
+			return true;
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
+			return false;
 		}
-		System.out.println("Operation done successfully");
 	}
 
 	/**

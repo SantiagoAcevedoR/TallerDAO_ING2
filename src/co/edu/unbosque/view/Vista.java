@@ -89,12 +89,22 @@ public class Vista extends JFrame{
 		panelArreglo.getPanelAgregar().getBtnCrear().addActionListener(controller);
 		panelArreglo.getPanelConsulta().getBtnEditar().addActionListener(controller);
 		panelArreglo.getPanelConsulta().getBtnEliminar().addActionListener(controller);
+		panelArreglo.getPanelConsulta().getPanelEditar().getBtnCrear().addActionListener(controller);
+		panelArreglo.getPanelConsulta().getPanelEditar().getBtnVolver().addActionListener(controller);
 		panelBinario.getBtnAgregarPersona().addActionListener(controller);
 		panelBinario.getBtnVerInfo().addActionListener(controller);
 		panelBinario.getPanelAgregar().getBtnCrear().addActionListener(controller);
+		panelBinario.getPanelConsulta().getBtnEditar().addActionListener(controller);
+		panelBinario.getPanelConsulta().getBtnEliminar().addActionListener(controller);
+		panelBinario.getPanelConsulta().getPanelEditar().getBtnCrear().addActionListener(controller);
+		panelBinario.getPanelConsulta().getPanelEditar().getBtnVolver().addActionListener(controller);
 		panelSql.getBtnAgregarPersona().addActionListener(controller);
 		panelSql.getBtnVerInfo().addActionListener(controller);
 		panelSql.getPanelAgregar().getBtnCrear().addActionListener(controller);
+		panelSql.getPanelConsulta().getBtnEditar().addActionListener(controller);
+		panelSql.getPanelConsulta().getBtnEliminar().addActionListener(controller);
+		panelSql.getPanelConsulta().getPanelEditar().getBtnCrear().addActionListener(controller);
+		panelSql.getPanelConsulta().getPanelEditar().getBtnVolver().addActionListener(controller);
 	}
 	
 	/**

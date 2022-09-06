@@ -59,7 +59,7 @@ public class PersonaBinDAO {
 	}
 
 	
-	public boolean editarApostador(String nombre, String apellido, String sexo, String telefono, String edad,
+	public boolean editarPersona(String nombre, String apellido, String sexo, String telefono, String edad,
 			String cedula) {
 		boolean verificar = false;
 		PersonaDTO apostador = buscarPersona(cedula);

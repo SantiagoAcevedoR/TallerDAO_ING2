@@ -162,6 +162,157 @@ public class Controller implements ActionListener, KeyListener {
 				vista.mostrarMensajeInformacion("Seleccione al menos un dato");
 			}
 		}
+		
+		
+		if(comando.equals(vista.getPanelBinario().getPanelConsulta().getCOMANDO_ELIMINAR())) {
+			if(vista.getPanelBinario().getPanelConsulta().getPanelTablas().verificarDatosTabla() == 1) {
+				String[] entradas = vista.getPanelBinario().getPanelConsulta().getPanelTablas().obtenerDatosTabla();
+				int confirmar = vista.mostarMensajeConfirmar("Seguro desea eliminar a esta persona");
+				if(confirmar==0) {
+					if(modelo.getPersonaBin().eliminarPersona(entradas[6])) {
+						String[][] info = modelo.mostarInfoPersonas(modelo.getPersonaBin().getListaPersonas());
+						vista.getPanelBinario().getPanelConsulta().getPanelTablas().limpiarPanel();
+						vista.getPanelBinario().getPanelConsulta().getPanelTablas().mostrarTablaClientes(info);
+						vista.mostrarMensajeInformacion(entradas[2]);
+					}else {
+						vista.mostrarMensajeInformacion("No se ha podido eliminar a la persona seleccionada");
+					}
+				} else if (confirmar == 1) {
+					vista.mostrarMensajeInformacion("Gracias por confirmar");
+				} else {
+					vista.mostrarMensajeInformacion("Gracias");
+				}
+			}else {
+				vista.mostrarMensajeInformacion("Seleccione al menos un dato");
+			}
+		}
+		
+		
+		if(comando.equals(vista.getPanelSql().getPanelConsulta().getCOMANDO_ELIMINAR())) {
+			if(vista.getPanelSql().getPanelConsulta().getPanelTablas().verificarDatosTabla() == 1) {
+				String[] entradas = vista.getPanelSql().getPanelConsulta().getPanelTablas().obtenerDatosTabla();
+				int confirmar = vista.mostarMensajeConfirmar("Seguro desea eliminar a esta persona");
+				if(confirmar==0) {
+					if(modelo.getPersonaSql().deleteDB(entradas[6])) {
+						String[][] info = modelo.mostarInfoPersonas(modelo.getPersonaSql().buscarPersonas());
+						vista.getPanelSql().getPanelConsulta().getPanelTablas().limpiarPanel();
+						vista.getPanelSql().getPanelConsulta().getPanelTablas().mostrarTablaClientes(info);
+						vista.mostrarMensajeInformacion(entradas[2]);
+					}else {
+						vista.mostrarMensajeInformacion("No se ha podido eliminar a la persona seleccionada");
+					}
+				} else if (confirmar == 1) {
+					vista.mostrarMensajeInformacion("Gracias por confirmar");
+				} else {
+					vista.mostrarMensajeInformacion("Gracias");
+				}
+			}else {
+				vista.mostrarMensajeInformacion("Seleccione al menos un dato");
+			}
+		}
+		
+		if(comando.equals(vista.getPanelArreglo().getPanelConsulta().getCOMANDO_EDITAR())) {
+			if(vista.getPanelArreglo().getPanelConsulta().getPanelTablas().verificarDatosTabla() == 1) {
+				String[] entradas = vista.getPanelArreglo().getPanelConsulta().getPanelTablas().obtenerDatosTabla();
+				vista.getPanelArreglo().getSplitPane().setRightComponent(vista.getPanelArreglo().getPanelConsulta().getPanelEditar());
+				vista.getPanelArreglo().getPanelConsulta().getPanelEditar().obtenerDatos(entradas);
+			}else {
+				vista.mostrarMensajeInformacion("Seleccione al menos un dato");
+			}
+		}
+		
+		if(comando.equals(vista.getPanelBinario().getPanelConsulta().getCOMANDO_EDITAR())) {
+			if(vista.getPanelBinario().getPanelConsulta().getPanelTablas().verificarDatosTabla() == 1) {
+				String[] entradas = vista.getPanelBinario().getPanelConsulta().getPanelTablas().obtenerDatosTabla();
+				vista.getPanelBinario().getSplitPane().setRightComponent(vista.getPanelBinario().getPanelConsulta().getPanelEditar());
+				vista.getPanelBinario().getPanelConsulta().getPanelEditar().obtenerDatos(entradas);
+			}else {
+				vista.mostrarMensajeInformacion("Seleccione al menos un dato");
+			}
+		}
+		
+		if(comando.equals(vista.getPanelSql().getPanelConsulta().getCOMANDO_EDITAR())) {
+			if(vista.getPanelSql().getPanelConsulta().getPanelTablas().verificarDatosTabla() == 1) {
+				String[] entradas = vista.getPanelSql().getPanelConsulta().getPanelTablas().obtenerDatosTabla();
+				vista.getPanelSql().getSplitPane().setRightComponent(vista.getPanelSql().getPanelConsulta().getPanelEditar());
+				vista.getPanelSql().getPanelConsulta().getPanelEditar().obtenerDatos(entradas);
+			}else {
+				vista.mostrarMensajeInformacion("Seleccione al menos un dato");
+			}
+		}
+		
+		if(comando.equals(vista.getPanelArreglo().getPanelConsulta().getPanelEditar().getCOMANDO_CREAR())) {
+			String[] entradas = vista.getPanelArreglo().getPanelConsulta().getPanelEditar().verificarEntradas();
+			if (entradas[0].equals("0")) {
+				if (modelo.getPersonaArreglo().editarPersona(entradas[1], entradas[2], entradas[6], entradas[3],
+						entradas[4], entradas[5])) {
+					vista.mostrarMensajeInformacion("Persona editada correctamente");
+					vista.getPanelArreglo().getPanelConsulta().getPanelEditar().limpiarPanel();
+				} else {
+					vista.mostrarMensajeInformacion("La persona ya se encuentra registrada");
+				}
+			} else {
+				vista.mostrarMensajeInformacion(entradas[1]);
+			}
+			
+		}
+		
+		if(comando.equals(vista.getPanelBinario().getPanelConsulta().getPanelEditar().getCOMANDO_CREAR())) {
+			String[] entradas = vista.getPanelBinario().getPanelConsulta().getPanelEditar().verificarEntradas();
+			if (entradas[0].equals("0")) {
+				if (modelo.getPersonaBin().editarPersona(entradas[1], entradas[2], entradas[6], entradas[3],
+						entradas[4], entradas[5])) {
+					vista.mostrarMensajeInformacion("Persona editada correctamente");
+					vista.getPanelBinario().getPanelConsulta().getPanelEditar().limpiarPanel();
+				} else {
+					vista.mostrarMensajeInformacion("La persona ya se encuentra registrada");
+				}
+			} else {
+				vista.mostrarMensajeInformacion(entradas[1]);
+			}
+			
+		}
+		
+		if(comando.equals(vista.getPanelSql().getPanelConsulta().getPanelEditar().getCOMANDO_CREAR())) {
+			String[] entradas = vista.getPanelSql().getPanelConsulta().getPanelEditar().verificarEntradas();
+			if (entradas[0].equals("0")) {
+				PersonaDTO persona = new PersonaDTO(entradas[1], entradas[2], entradas[6], entradas[3],
+						entradas[4], entradas[5]);				
+				if (modelo.getPersonaSql().modificarPersona(persona)) {
+					vista.mostrarMensajeInformacion("Persona editada correctamente");
+					vista.getPanelSql().getPanelConsulta().getPanelEditar().limpiarPanel();
+				} else {
+					vista.mostrarMensajeInformacion("La persona ya se encuentra registrada");
+				}
+			} else {
+				vista.mostrarMensajeInformacion(entradas[1]);
+			}
+			
+		}
+		
+		if(comando.equals(vista.getPanelArreglo().getPanelConsulta().getPanelEditar().getCOMANDO_VOLVER())) {
+			vista.getPanelArreglo().getSplitPane().setRightComponent(vista.getPanelArreglo().getPanelConsulta());
+			vista.getPanelArreglo().getPanelConsulta().getPanelTablas().limpiarPanel();
+			String[][] info = modelo.mostarInfoPersonas(modelo.getPersonaArreglo().getListaPersona());
+			vista.getPanelArreglo().getPanelConsulta().getPanelTablas().limpiarPanel();
+			vista.getPanelArreglo().getPanelConsulta().getPanelTablas().mostrarTablaClientes(info);
+		}
+		
+		if(comando.equals(vista.getPanelBinario().getPanelConsulta().getPanelEditar().getCOMANDO_VOLVER())) {
+			vista.getPanelBinario().getSplitPane().setRightComponent(vista.getPanelBinario().getPanelConsulta());
+			vista.getPanelBinario().getPanelConsulta().getPanelTablas().limpiarPanel();
+			String[][] info = modelo.mostarInfoPersonas(modelo.getPersonaBin().getListaPersonas());
+			vista.getPanelBinario().getPanelConsulta().getPanelTablas().limpiarPanel();
+			vista.getPanelBinario().getPanelConsulta().getPanelTablas().mostrarTablaClientes(info);
+		}
+		
+		if(comando.equals(vista.getPanelSql().getPanelConsulta().getPanelEditar().getCOMANDO_VOLVER())) {
+			vista.getPanelSql().getSplitPane().setRightComponent(vista.getPanelBinario().getPanelConsulta());
+			vista.getPanelSql().getPanelConsulta().getPanelTablas().limpiarPanel();
+			String[][] info = modelo.mostarInfoPersonas(modelo.getPersonaSql().buscarPersonas());
+			vista.getPanelSql().getPanelConsulta().getPanelTablas().limpiarPanel();
+			vista.getPanelSql().getPanelConsulta().getPanelTablas().mostrarTablaClientes(info);
+		}
 	}
 
 	@Override
