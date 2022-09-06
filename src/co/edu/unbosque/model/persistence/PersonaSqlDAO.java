@@ -132,7 +132,6 @@ public class PersonaSqlDAO {
 		connection.abrirConexion();
 		Statement stmt = null;
 		try {
-
 			stmt = connection.getConnection().createStatement();
 			String sql = "UPDATE personas set nombre = '" + persona.getNombre() + "',apellido= '"
 					+ persona.getApellido() + "',sexo='" + persona.getSexo() + "',edad='" + persona.getEdad()
@@ -152,8 +151,6 @@ public class PersonaSqlDAO {
 		connection.abrirConexion();
 		Statement stmt = null;
 		try {
-			
-
 			stmt = connection.getConnection().createStatement();
 			String sql = "DELETE from persona where cedula='"+cedula+"';";
 			stmt.executeUpdate(sql);
