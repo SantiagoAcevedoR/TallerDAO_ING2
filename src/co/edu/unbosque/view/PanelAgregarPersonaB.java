@@ -68,9 +68,8 @@ public class PanelAgregarPersonaB extends JPanel{
 		panel.add(labelSexo);
 		panel.add(comboSexo);
 		panelBotones = new JPanel();
-		panelBotones.setLayout(new GridLayout(1, 2));
+		panelBotones.setLayout(new GridLayout(1, 1));
 		panelBotones.add(btnCrear);
-		panelBotones.add(btnVolver);
 		add(panel, BorderLayout.CENTER);
 		add(panelBotones, BorderLayout.PAGE_END);
 	}
