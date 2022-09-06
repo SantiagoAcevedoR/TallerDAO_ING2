@@ -158,7 +158,7 @@ public class Controller implements ActionListener, KeyListener {
 	public void keyTyped(KeyEvent arg0) {
 		if (!vista.getPanelSql().getPanelConsulta().getTxtNombre().getText().equals("")) {
 			System.out.println(vista.getPanelSql().getPanelConsulta().getTxtNombre().getText());
-			ArrayList<PersonaDTO> listaUsuarios = modelo.getPersonaSql().consultarUsuarios(vista.getPanelSql().getPanelConsulta().getTxtNombre().getText());
+			ArrayList<PersonaDTO> listaUsuarios = modelo.getPersonaSql().consultarPersonas(vista.getPanelSql().getPanelConsulta().getTxtNombre().getText());
 			String[][] infoUsuarios = modelo.mostarInfoPersonas(listaUsuarios);
 			vista.getPanelSql().getPanelConsulta().getPanelTablas().limpiarPanel();
 			vista.getPanelSql().getPanelConsulta().getPanelTablas().mostrarTablaClientes(infoUsuarios);

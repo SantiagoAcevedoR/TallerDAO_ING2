@@ -65,7 +65,7 @@ public class PersonaSqlDAO {
 		return listaPersonas;
 	}
 	
-	public ArrayList<PersonaDTO> consultarUsuarios(String cedula) {
+	public ArrayList<PersonaDTO> consultarPersonas(String cedula) {
 		connection.abrirConexion();
 		Statement stmt = null;
 		ArrayList<PersonaDTO> listaPersonas = new ArrayList<>();
