@@ -2,7 +2,6 @@ package co.edu.unbosque.model.persistence;
 
 import java.util.ArrayList;
 
-
 public class PersonaArrayDAO {
 
 	private ArrayList<PersonaDTO> listaPersona;
@@ -20,19 +19,18 @@ public class PersonaArrayDAO {
 		}
 		return encontrado;
 	}
-	
-	public ArrayList<PersonaDTO> buscarPersonasPorCedula(String cedula){
-		ArrayList<PersonaDTO> listaPersona2 =new ArrayList<PersonaDTO>();
-		for(int i=0; i<cedula.length()+1;i++) {
-			for(int j=0;j<listaPersona.size();j++) {
-				if(cedula.substring(i, i+1).equals(listaPersona.get(j).getCedula().substring(i, i+1))) {
-					listaPersona2.add(listaPersona.get(j));
-				}
+
+	public ArrayList<PersonaDTO> buscarPersonasPorCedula(String cedula) {
+		ArrayList<PersonaDTO> listaPersona2 = new ArrayList<PersonaDTO>();
+		for (int i = 0; i < listaPersona.size(); i++) {
+			String cedula1 = listaPersona.get(i).getCedula().substring(0, cedula.length());
+			if(cedula.equals(cedula1)) {
+				listaPersona2.add(listaPersona.get(i));
 			}
+
 		}
 		return listaPersona2;
-		
-		
+
 	}
 
 	public boolean agregarPersona(String nombre, String apellido, String sexo, String telefono, String edad,
@@ -50,7 +48,7 @@ public class PersonaArrayDAO {
 		return verificar;
 
 	}
-	
+
 	public boolean eliminarPersona(String cedula) {
 		boolean verificar = false;
 		PersonaDTO persona = buscarPersona(cedula);
@@ -63,7 +61,7 @@ public class PersonaArrayDAO {
 		return verificar;
 
 	}
-	
+
 	public boolean editarPersona(String nombre, String apellido, String sexo, String telefono, String edad,
 			String cedula) {
 		boolean verificar = false;
@@ -91,5 +89,5 @@ public class PersonaArrayDAO {
 	public void setListaPersona(ArrayList<PersonaDTO> listaPersona) {
 		this.listaPersona = listaPersona;
 	}
-	
+
 }

@@ -168,6 +168,19 @@ public class Controller implements ActionListener, KeyListener {
 			vista.getPanelSql().getPanelConsulta().getPanelTablas().limpiarPanel();
 			vista.getPanelSql().getPanelConsulta().getPanelTablas().mostrarTablaClientes(infoUsuarios);
 		}
+		
+		if (!vista.getPanelArreglo().getPanelConsulta().getTxtNombre().getText().equals("")) {
+			System.out.println(vista.getPanelArreglo().getPanelConsulta().getTxtNombre().getText());
+			ArrayList<PersonaDTO> listaUsuarios = modelo.getPersonaArreglo().buscarPersonasPorCedula(vista.getPanelSql().getPanelConsulta().getTxtNombre().getText());
+			String[][] infoUsuarios = modelo.mostarInfoPersonas(listaUsuarios);
+			vista.getPanelArreglo().getPanelConsulta().getPanelTablas().limpiarPanel();
+			vista.getPanelArreglo().getPanelConsulta().getPanelTablas().mostrarTablaClientes(infoUsuarios);
+		}else if (vista.getPanelArreglo().getPanelConsulta().getTxtNombre().getText().equals("")) {
+			ArrayList<PersonaDTO> listaUsuarios = modelo.getPersonaArreglo().getListaPersona();
+			String[][] infoUsuarios = modelo.mostarInfoPersonas(listaUsuarios);
+			vista.getPanelArreglo().getPanelConsulta().getPanelTablas().limpiarPanel();
+			vista.getPanelArreglo().getPanelConsulta().getPanelTablas().mostrarTablaClientes(infoUsuarios);
+		}
 
 	}
 }
