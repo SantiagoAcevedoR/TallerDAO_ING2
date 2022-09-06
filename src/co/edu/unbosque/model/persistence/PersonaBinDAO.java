@@ -23,7 +23,16 @@ public class PersonaBinDAO {
 			}
 		}
 		return encontrado;
-
+	}
+	
+	public ArrayList<PersonaDTO> buscarPersonaPorCedula(String cedula) {
+		ArrayList<PersonaDTO> listaP = new ArrayList<PersonaDTO>();
+		for (int i = 0; i < listaPersonas.size(); i++) {
+			if (cedula.equals(listaPersonas.get(i).getCedula())) {
+				listaP.add(listaPersonas.get(i));
+			}
+		}
+		return listaP;
 	}
 
 	

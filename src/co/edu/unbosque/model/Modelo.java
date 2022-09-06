@@ -34,6 +34,29 @@ public class Modelo {
 		return infoUsuarios;
 	}
 
+	
+	public boolean soloNumeros(String numero) {
+		for (int i = 0; i < numero.length(); i++) {
+			char aux = numero.charAt(i);
+			int digito = aux - '0';
+			if (digito > 9 || digito < 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public void verificarNumero(String numero) throws ExceptionNumero {
+		if (!soloNumeros(numero)) {
+			throw new ExceptionNumero("Caracter no permitido en campo numérico");
+		} else {
+			if (Long.parseLong(numero) <= 0) {
+				throw new ExceptionNumero("Ingrese una cantidad minimo de uno");
+			}
+		}
+	}
+	
+	
 	/**
 	 * @return the personaArreglo
 	 */

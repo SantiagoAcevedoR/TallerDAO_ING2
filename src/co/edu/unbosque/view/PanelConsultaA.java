@@ -15,6 +15,8 @@ public class PanelConsultaA extends JPanel{
 	
 	private final String COMANDO_ELIMINAR = "ELIMINAR";
 	private final String COMANDO_EDITAR = "EDITAR";
+	private final String COMANDO_BUSCAR = "BUSCAR";
+
 	
 	private PanelTablas panelTablas;
 	private PanelEditarPersonaA panelEditar;
@@ -22,6 +24,7 @@ public class PanelConsultaA extends JPanel{
 	private JTextField txtNombre;
 	private JButton btnEliminar;
 	private JButton btnEditar;
+	private JButton btnBuscar;
 	private JPanel panel;
 	private JSplitPane splitPane;
 	private JPanel panelBotones;
@@ -31,17 +34,20 @@ public class PanelConsultaA extends JPanel{
 		setLayout(new GridLayout(1, 1));
 		panelTablas = new PanelTablas();
 		panelEditar = new PanelEditarPersonaA();
-		labelNombre = new JLabel("Ingrese el nombre que desa buscar");
+		labelNombre = new JLabel("Ingrese la cédula a buscar");
 		txtNombre = new JTextField();
 		txtNombre.addKeyListener(controller);
 		btnEliminar = new JButton("Eliminar");
 		btnEliminar.setActionCommand(COMANDO_ELIMINAR);
 		btnEditar = new JButton("Editar");
 		btnEditar.setActionCommand(COMANDO_EDITAR);
+		btnBuscar = new JButton("Buscar");
+		btnBuscar.setActionCommand(COMANDO_BUSCAR);
 		panel = new JPanel();
-		panel.setLayout(new GridLayout(1, 2));
+		panel.setLayout(new GridLayout(1, 3));
 		panel.add(labelNombre);
 		panel.add(txtNombre);
+		panel.add(btnBuscar);
 		panelBotones = new JPanel();
 		panelBotones.setLayout(new GridLayout(1, 2));
 		panelBotones.add(btnEliminar);
@@ -182,6 +188,26 @@ public class PanelConsultaA extends JPanel{
 	public void setPanelEditar(PanelEditarPersonaA panelEditar) {
 		this.panelEditar = panelEditar;
 	}
-	
+
+	/**
+	 * @return the cOMANDO_BUSCAR
+	 */
+	public String getCOMANDO_BUSCAR() {
+		return COMANDO_BUSCAR;
+	}
+
+	/**
+	 * @return the btnBuscar
+	 */
+	public JButton getBtnBuscar() {
+		return btnBuscar;
+	}
+
+	/**
+	 * @param btnBuscar the btnBuscar to set
+	 */
+	public void setBtnBuscar(JButton btnBuscar) {
+		this.btnBuscar = btnBuscar;
+	}
 	
 }

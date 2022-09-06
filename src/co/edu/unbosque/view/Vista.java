@@ -91,6 +91,7 @@ public class Vista extends JFrame{
 		panelArreglo.getPanelConsulta().getBtnEliminar().addActionListener(controller);
 		panelArreglo.getPanelConsulta().getPanelEditar().getBtnCrear().addActionListener(controller);
 		panelArreglo.getPanelConsulta().getPanelEditar().getBtnVolver().addActionListener(controller);
+		panelArreglo.getPanelConsulta().getBtnBuscar().addActionListener(controller);
 		panelBinario.getBtnAgregarPersona().addActionListener(controller);
 		panelBinario.getBtnVerInfo().addActionListener(controller);
 		panelBinario.getPanelAgregar().getBtnCrear().addActionListener(controller);
@@ -98,6 +99,7 @@ public class Vista extends JFrame{
 		panelBinario.getPanelConsulta().getBtnEliminar().addActionListener(controller);
 		panelBinario.getPanelConsulta().getPanelEditar().getBtnCrear().addActionListener(controller);
 		panelBinario.getPanelConsulta().getPanelEditar().getBtnVolver().addActionListener(controller);
+		panelBinario.getPanelConsulta().getBtnBuscar().addActionListener(controller);
 		panelSql.getBtnAgregarPersona().addActionListener(controller);
 		panelSql.getBtnVerInfo().addActionListener(controller);
 		panelSql.getPanelAgregar().getBtnCrear().addActionListener(controller);

@@ -31,7 +31,7 @@ public class PanelConsultaS extends JPanel{
 		setLayout(new GridLayout(1, 1));
 		panelTablas = new PanelTablas();
 		panelEditar = new PanelEditarPersonaS();
-		labelNombre = new JLabel("Ingrese el nombre que desa buscar");
+		labelNombre = new JLabel("Ingrese la cédula a buscar");
 		txtNombre = new JTextField();
 		txtNombre.addKeyListener(controller);
 		btnEliminar = new JButton("Eliminar");
